@@ -5,6 +5,7 @@
 <title>貨幣轉換+旅行帳本</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f6f3ed;color:#293d33;font:16px/1.5 system-ui,-apple-system,sans-serif;padding:12px 8px}main{max-width:940px;margin:auto;background:#fff;border-radius:22px;padding:20px}h1{font-size:23px;line-height:1.4;margin:0}h2{font-size:20px;margin:0}p{margin:8px 0}.muted,small{color:#748078}.intro{font-size:14px;margin:10px 0 16px}label{display:block;margin:10px 0 5px;font-size:14px}input,select,button{font:inherit;border-radius:10px;min-height:44px;padding:9px 10px;width:100%;border:1px solid #d6dfd8;background:white;color:inherit}input,select{font-size:16px}button{cursor:pointer;background:#426b56;color:#fff;border:0;font-weight:600}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ca9e56;outline-offset:2px}[hidden]{display:none!important}.row{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:8px;align-items:end}.secondary,.row button,.action{background:#edf3ef;color:#426b56}.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pair>div{min-width:0}#entry{max-width:580px;margin:0 auto}#result{font-size:28px;line-height:1.3;font-weight:700;padding:15px;background:#f0f5f1;border-radius:12px;margin-top:14px;overflow-wrap:anywhere}#rate{font-size:13px;margin:8px 0 0}#updated{display:block;font-size:11px;margin:5px 0 12px}.quick-actions{display:grid;grid-template-columns:minmax(0,1.5fr) 1fr 1fr;gap:8px;margin-top:14px;align-items:center}.check{display:flex;gap:7px;align-items:center;margin:0;font-size:14px;white-space:nowrap}.check input,input.tick{width:22px;height:22px;min-height:22px;padding:0;accent-color:#426b56;flex-shrink:0}.check label{margin:0}.quick-actions button{padding:8px 6px}#save{margin-top:14px}#cancel{margin-top:8px}#notice{font-size:13px;color:#805c3d;margin:6px 0}#notice:empty{display:none}details{margin-top:10px;font-size:13px}summary{cursor:pointer;color:#748078}#extra-fields{margin-top:9px}#extra-fields label{font-size:13px}#ledger{margin-top:24px;border-top:1px solid #e5ebe5;padding-top:18px}.ledger-head{display:flex;justify-content:space-between;gap:8px;align-items:center}#summary{font-size:14px;margin:8px 0;font-weight:650}.scroll-hint{font-size:12px;color:#748078;margin:0 0 9px}.table-wrap{overflow-x:auto;overscroll-behavior-x:contain;border:1px solid #e3eae4;border-radius:12px}table{width:100%;min-width:810px;border-collapse:collapse;table-layout:fixed;font-size:13px}th,td{padding:6px;border-bottom:1px solid #e5ebe5;text-align:left;vertical-align:middle;white-space:nowrap;height:54px}thead th{height:43px;background:#edf3ef;color:#526459;font-weight:650}th:first-child,td:first-child{width:48px;text-align:center;position:sticky;left:0;background:#fff;z-index:1}thead th:first-child{background:#edf3ef;z-index:2}tr.bought{background:#f8faf7}tr.bought td:first-child{background:#f8faf7}th:nth-child(2){width:90px}th:nth-child(3){width:46px}th:nth-child(4){width:125px}th:nth-child(5){width:62px}th:nth-child(6){width:106px}th:nth-child(7){width:82px}th:nth-child(8){width:94px}th:nth-child(9){width:109px}td:nth-child(6),td:nth-child(7){font-variant-numeric:tabular-nums;text-align:right}.item-title{display:block;overflow:hidden;text-overflow:ellipsis;max-width:100%;font-weight:550}.thumb{width:32px;height:32px;object-fit:cover;border-radius:6px;display:block}.thumb-empty{color:#b7c1b9;text-align:center}td select{min-height:44px;padding:5px 2px;border:0;background:transparent;font-size:13px;border-radius:6px}td .group{font-weight:650;color:#426b56}td .action{min-height:44px;width:44px;padding:4px 2px;font-size:12px;margin-right:3px;border-radius:9px}.sort-button{width:auto;min-height:40px;background:transparent;color:inherit;padding:2px 0;font:inherit;font-weight:650}.sort-button span{font-size:10px}.empty-row{text-align:center!important;color:#748078;height:68px}.ledger-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px}#ledger-total{font-size:17px}#export{width:auto;min-width:100px;font-size:13px}footer{font-size:11px;color:#879087;margin-top:20px}footer p{margin:4px 0}a{color:#426b56}.version{display:block;margin-top:8px;font-size:11px}dialog{border:0;border-radius:20px;padding:18px;width:min(540px,calc(100% - 20px));max-height:88dvh;overflow:auto;color:#293d33;box-shadow:0 12px 60px #0003}dialog::backdrop{background:#1c322b77}.dialog-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;position:sticky;top:-18px;background:white;z-index:2;padding:4px 0 8px}.dialog-header button{width:44px;background:#edf3ef;color:#426b56;font-size:22px;padding:0}.hint{font-size:13px;color:#748078}#photo-box h2{font-size:20px}#preview{max-width:100%;max-height:240px;object-fit:contain;display:block;margin:12px auto}#review{border-top:1px solid #dce5de;margin-top:14px;padding-top:10px}#drafts{display:grid;gap:10px}.draft{background:#f5f7f4;border-radius:12px;padding:12px}.draft small{display:block;font-size:12px}.draft .check{white-space:normal}.photo-actions{margin-top:8px}#photo-status,#settings-status{font-size:13px;color:#805c3d}#settings{padding:12px;background:#f5f7f4;border-radius:12px;margin-bottom:14px}.chart-layout{display:grid;grid-template-columns:180px minmax(0,1fr);gap:16px;align-items:center;margin:20px 0}.pie{width:180px;height:180px;border-radius:50%;display:grid;place-items:center;margin:auto;background:#e3e9e4}.pie-center{width:120px;height:120px;background:#fff;border-radius:50%;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:8px}.pie-center small{font-size:11px}.pie-center strong{font-size:17px;overflow-wrap:anywhere}.legend{display:grid;gap:12px}.legend-row{display:grid;grid-template-columns:12px 1fr auto;gap:7px;align-items:center;font-size:14px}.swatch{width:12px;height:12px;border-radius:4px}.legend-value{text-align:right}.legend-value small{font-size:12px;margin-left:7px}#payment-summary{font-size:13px;background:#f0f5f1;border-radius:10px;padding:12px}.editing{outline:2px solid #d4a15c}@media(max-width:540px){body{padding:8px 5px}main{padding:16px 13px;border-radius:19px}h1{font-size:21px}.intro{font-size:12px;margin:8px 0 12px}.row select{padding-left:4px;padding-right:2px;font-size:14px}.pair select{font-size:15px}.quick-actions{gap:7px}.check{font-size:13px}.chart-layout{grid-template-columns:1fr}dialog{padding:16px}.dialog-header{top:-16px}.ledger-head h2{font-size:19px}#ledger-total{font-size:15px}.ledger-footer{align-items:center}}
+.photo-choices{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}#photo-consent{position:relative}
 </style>
 <main>
 <section id="entry" aria-label="換算與新增商品">
@@ -13,7 +14,7 @@
 <div class="row"><div><label for="from">原始幣別</label><select id="from"></select></div><button id="swap" type="button" aria-label="交換幣別">⇄</button><div><label for="to">換成幣別</label><select id="to"></select></div></div>
 <div id="result" role="status" aria-live="polite">載入匯率中…</div><p id="rate" class="muted"></p><small id="updated"></small><button id="retry" hidden>重新取得匯率</button>
 <label for="name">消費項目</label><input id="name" maxlength="80" placeholder="例如：午餐、衣服、伴手禮">
-<div class="pair"><div><label for="payment">付款方式</label><select id="payment"><option value="card">刷卡</option><option value="cash">現金</option><option value="">未選</option></select></div><div><label for="compare-group">加入比較</label><select id="compare-group"><option>A</option><option>B</option><option>C</option><option>D</option></select></div></div>
+<div class="pair"><div><label for="payment">付款方式</label><select id="payment"><option value="card">刷卡</option><option value="cash">現金</option><option value="">未選</option></select></div><div><label for="compare-group">加入比較</label><select id="compare-group"><option value="">未選</option><option>A</option><option>B</option><option>C</option><option>D</option></select></div></div>
 <div class="quick-actions"><label class="check"><input id="purchased" type="checkbox">已確認購買</label><button id="open-photo" class="secondary" type="button">📷 拍照</button><button id="open-analysis" class="secondary" type="button">◔ 分析</button></div>
 <label for="category">消費分類</label><select id="category"></select>
 <details id="extra-fields"><summary>店家／備註（選填）</summary><label for="shop">店家／備註</label><input id="shop" maxlength="80" placeholder="例如：A店、會員價、兩件優惠"><button id="edit-photo" class="secondary photo-actions" type="button" hidden>替這筆商品拍照填入</button></details>
@@ -23,10 +24,10 @@
 <div class="table-wrap" tabindex="0" role="region" aria-label="購物記帳表，可左右滑動"><table>
 <thead><tr><th>已購</th><th id="date-heading" aria-sort="descending"><button id="sort-date" class="sort-button">日期 <span>↓</span></button></th><th>縮圖</th><th>消費項目</th><th id="group-heading" aria-sort="none"><button id="sort-group" class="sort-button">比較 <span>↕</span></button></th><th>幣別／原價</th><th>約台幣</th><th>付款方式</th><th>操作</th></tr></thead><tbody id="rows"></tbody></table></div>
 <div class="ledger-footer"><strong id="ledger-total">合計 NT$ 0.00</strong><button id="export" class="secondary">↓ 匯出清單</button></div></section>
-<footer><p>合計只計已購買商品，台幣金額保留記錄時的換算值。</p><p>紀錄保存在此瀏覽器，請定期匯出備份。</p><p>實際換匯及刷卡金額依銀行報價。<a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">匯率來源</a></p><small class="version">版本 4.0 · 手機精簡清單</small></footer>
+<footer><p>合計只計已購買商品，台幣金額保留記錄時的換算值。</p><p>紀錄保存在此瀏覽器，請定期匯出備份。</p><p>實際換匯及刷卡金額依銀行報價。<a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">匯率來源</a></p><small class="version">版本 4.1 · 手機精簡清單</small></footer>
 </main>
-<dialog id="photo-dialog" aria-labelledby="photo-title"><div class="dialog-header"><h2 id="photo-title">📷 拍照自動填入</h2><button id="close-photo" type="button" aria-label="關閉拍照視窗">×</button></div><section id="photo-box">
-<p class="hint">辨識商品標籤或收據，品項翻成中文；核對價格後再加入清單。</p>
+<dialog id="photo-dialog" aria-labelledby="photo-title"><div class="dialog-header"><h2 id="photo-title">📷 商品圖片</h2><button id="close-photo" type="button" aria-label="關閉拍照視窗">×</button></div><section id="photo-box">
+<p class="hint">選好圖片後，可直接附上圖片，或使用辨識自動填入。</p>
 <details id="settings"><summary>圖片辨識服務設定</summary>
 <p class="hint">第一次由專案管理者啟用服務。這裡填服務網址和使用碼，請勿填入 OpenAI API 金鑰。</p>
 <label for="endpoint">辨識服務網址（HTTPS）</label><input id="endpoint" type="url" placeholder="https://你的服務.workers.dev/recognize" autocomplete="off">
@@ -36,7 +37,7 @@
 <div class="pair"><button id="camera-button" class="secondary">拍攝照片</button><button id="upload-button" class="secondary">選擇圖片</button></div>
 <input id="camera" type="file" accept="image/*" capture="environment" hidden><input id="upload" type="file" accept="image/*" hidden>
 <img id="preview" alt="待辨識圖片預覽" hidden>
-<div id="photo-consent" hidden><p class="hint">按「開始辨識」後，這張照片會傳至管理者設定的服務及 OpenAI 進行辨識與翻譯。請先裁掉不需要的個資；帳本其他紀錄不會上傳。</p><button id="recognize">開始辨識並翻譯</button><button id="discard-photo" class="secondary photo-actions">取消這張照片</button></div>
+<div id="photo-consent" hidden><div class="photo-choices"><button id="attach-photo" type="button">確定</button><button id="recognize" type="button">圖面辨識自動填入</button><button id="discard-photo" type="button" class="secondary">取消</button></div><p class="hint">「確定」只附上圖片，名稱與金額自行填寫。只有點「圖面辨識自動填入」，照片才會傳至設定的服務及 OpenAI 進行辨識與翻譯。</p></div>
 <p id="photo-status" role="status" aria-live="polite">尚未設定辨識服務；請先完成服務設定。</p>
 <div id="review" hidden><h3>核對辨識結果</h3><p class="hint">價格為這一行的總價。請確認折扣、數量及幣別；不需要的項目可取消勾選。新項目預設尚未購買。</p><div id="drafts"></div><button id="confirm-photo" class="photo-actions">確認並加入清單</button><button id="cancel-photo" class="secondary photo-actions">取消辨識結果</button></div>
 </section></dialog>
@@ -68,7 +69,8 @@ $('category').onchange=()=>categoryChosen=true;
 $('name').oninput=()=>{if(!categoryChosen)$('category').value=suggestCategory($('name').value);};
 let records=[],rates=null,rateDate='',editing=-1,storageError=false,readError=false;
 let sortState={field:'date',direction:-1};
-const groups=['A','B','C','D'];
+const groups=['','A','B','C','D'];
+let pendingThumbnail='';
 const number=n=>n.toLocaleString('zh-TW',{minimumFractionDigits:2,maximumFractionDigits:2});
 const currency=(n,c)=>new Intl.NumberFormat('zh-TW',{style:'currency',currency:c,currencyDisplay:'code'}).format(n);
 for(const [code,label] of Object.entries(currencies)){ $('from').add(new Option(label+' '+code,code));$('to').add(new Option(label+' '+code,code)); }
@@ -76,13 +78,13 @@ function safeThumbnail(value){return typeof value==='string'&&value.length<=4000
 try{
  const saved=JSON.parse(localStorage.getItem(key)||'[]');
  if(!Array.isArray(saved)||!saved.every(r=>r&&typeof r.name==='string'&&Object.hasOwn(currencies,r.currency)&&Number.isFinite(r.amount)&&r.amount>=0&&Number.isFinite(r.twd)&&r.twd>=0&&typeof r.date==='string'&&(r.purchased===undefined||typeof r.purchased==='boolean')&&(r.payment===undefined||['','cash','card'].includes(r.payment))))throw Error();
- records=saved.map(r=>({...r,purchased:r.purchased??true,payment:r.payment||'',group:groups.includes(r.group)?r.group:'A',thumbnail:safeThumbnail(r.thumbnail),category:Object.hasOwn(categories,r.category)?r.category:'other',shop:typeof r.shop==='string'?r.shop:''}));
+ records=saved.map(r=>({...r,purchased:r.purchased??true,payment:r.payment||'',group:groups.includes(r.group)?r.group:'',thumbnail:safeThumbnail(r.thumbnail),category:Object.hasOwn(categories,r.category)?r.category:'other',shop:typeof r.shop==='string'?r.shop:''}));
 }catch{readError=true;$('notice').textContent='無法讀取既有紀錄，暫停修改以免覆蓋。請先檢查瀏覽器儲存設定。';}
 try{const prefs=JSON.parse(localStorage.getItem(storagePrefix+'currencies')||'{}');$('from').value=currencies[prefs.from]?prefs.from:'KRW';$('to').value=currencies[prefs.to]?prefs.to:'TWD';}catch{$('from').value='KRW';$('to').value='TWD';}
 function amountValue(){const s=$('amount').value.trim(),n=Number(s);return s!==''&&Number.isFinite(n)&&n>=0?n:null;}
 function convert(){const n=amountValue();$('rate').textContent='';if(!rates)return;if(n===null){$('result').textContent='請輸入有效金額';return;}const f=$('from').value,t=$('to').value,x=n*rates[t]/rates[f];$('result').textContent=Number.isFinite(x)?currency(x,t):'金額過大';$('rate').textContent='1 '+f+' ≈ '+(rates[t]/rates[f]).toLocaleString('zh-TW',{maximumSignificantDigits:6})+' '+t;}
 function persist(){try{localStorage.setItem(key,JSON.stringify(records));storageError=false;}catch{storageError=true;}return !storageError;}
-function resetEdit(){editing=-1;$('category').value='other';categoryChosen=false;$('name').value='';$('shop').value='';$('payment').value='card';$('compare-group').value='A';$('purchased').checked=false;$('save').textContent='＋ 加入清單';$('cancel').hidden=true;$('edit-photo').hidden=true;$('extra-fields').open=false;$('name').classList.remove('editing');}
+function resetEdit(){pendingThumbnail='';editing=-1;$('category').value='other';categoryChosen=false;$('name').value='';$('shop').value='';$('payment').value='card';$('compare-group').value='';$('purchased').checked=false;$('save').textContent='＋ 加入清單';$('cancel').hidden=true;$('edit-photo').hidden=true;$('extra-fields').open=false;$('name').classList.remove('editing');}
 function commitRecords(next,message){
  if(readError)return false;
  try{localStorage.setItem(key,JSON.stringify(next));}catch{$('notice').textContent='儲存失敗，這次變更尚未保存。請匯出現有紀錄，並檢查儲存空間。';return false;}
@@ -106,7 +108,7 @@ function field(value,cls,label,change,type='text'){
 }
 function select(value,options,cls,label,change){const el=document.createElement('select');el.className=cls;el.setAttribute('aria-label',label);for(const [v,n] of options)el.add(new Option(n,v));el.value=value;el.disabled=readError;el.onchange=()=>change(el.value);return el;}
 function dateOrder(value){const m=/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/.exec(value);if(m)return Number(m[1])*10000+Number(m[2])*100+Number(m[3]);return 0;}
-function orderedRecords(){return records.map((r,i)=>({r,i})).sort((a,b)=>{let difference=sortState.field==='group'?(a.r.group||'A').localeCompare(b.r.group||'A'):dateOrder(a.r.date)-dateOrder(b.r.date);return difference*sortState.direction||a.i-b.i;});}
+function orderedRecords(){return records.map((r,i)=>({r,i})).sort((a,b)=>{let difference=sortState.field==='group'?(a.r.group||'').localeCompare(b.r.group||''):dateOrder(a.r.date)-dateOrder(b.r.date);return difference*sortState.direction||a.i-b.i;});}
 function render(){
  const tbody=$('rows');tbody.replaceChildren();
  if(!records.length){const tr=document.createElement('tr'),cell=td(tr,'還沒有商品，先加入一筆吧！');cell.colSpan=9;cell.className='empty-row';tbody.append(tr);}
@@ -116,7 +118,7 @@ function render(){
   td(tr,r.date.split(' ')[0]);
   const thumbnail=safeThumbnail(r.thumbnail);if(thumbnail){const img=document.createElement('img');img.src=thumbnail;img.alt=r.name+' 縮圖';img.className='thumb';img.loading='lazy';td(tr,img);}else{td(tr,'—').className='thumb-empty';}
   const title=document.createElement('span');title.className='item-title';title.textContent=r.name;title.title=[r.name,r.shop,categories[r.category]].filter(Boolean).join(' · ');td(tr,title);
-  td(tr,select(r.group||'A',groups.map(g=>[g,g]),'group','比較組別 '+r.name,v=>modify(i,'group',v)));
+  td(tr,select(r.group||'',groups.map(g=>[g,g||'未選']),'group','比較組別 '+r.name,v=>modify(i,'group',v)));
   td(tr,r.currency+' '+r.amount.toLocaleString('zh-TW',{maximumFractionDigits:2}));td(tr,number(r.twd));
   td(tr,select(r.payment,[['card','刷卡'],['cash','現金'],['','未選']],'payment','付款方式 '+r.name,v=>modify(i,'payment',v)));
   const actions=document.createElement('div');for(const [label,fn] of [['修改',()=>edit(i)],['刪除',()=>remove(i)]]){const b=document.createElement('button');b.className='action';b.textContent=label;b.disabled=readError;b.setAttribute('aria-label',label+' '+r.name);b.onclick=fn;actions.append(b);}td(tr,actions);tbody.append(tr);
@@ -151,7 +153,7 @@ function renderStatistics(){
  if(!total&&records.some(r=>r.purchased))$('chart-empty').textContent='已購買金額為 0，尚無可顯示的消費占比。';
  else if(!total)$('chart-empty').textContent='還沒有已購買的消費，勾選商品後就會顯示占比。';
 }
-function edit(i){if(readError)return;const r=records[i];editing=i;$('amount').value=r.amount;$('from').value=r.currency;$('to').value='TWD';$('name').value=r.name;$('shop').value=r.shop;$('compare-group').value=r.group||'A';$('edit-photo').hidden=false;$('category').value=r.category;categoryChosen=true;$('payment').value=r.payment;$('purchased').checked=r.purchased;$('name').classList.add('editing');$('save').textContent='儲存修改';$('cancel').hidden=false;$('notice').textContent='修改這筆商品；其他商品不會更動。';convert();window.scrollTo({top:0,behavior:'smooth'});}
+function edit(i){if(readError)return;pendingThumbnail='';const r=records[i];editing=i;$('amount').value=r.amount;$('from').value=r.currency;$('to').value='TWD';$('name').value=r.name;$('shop').value=r.shop;$('compare-group').value=r.group||'';$('edit-photo').hidden=false;$('category').value=r.category;categoryChosen=true;$('payment').value=r.payment;$('purchased').checked=r.purchased;$('name').classList.add('editing');$('save').textContent='儲存修改';$('cancel').hidden=false;$('notice').textContent='修改這筆商品；其他商品不會更動。';convert();window.scrollTo({top:0,behavior:'smooth'});}
 function remove(i){if(readError||!confirm('刪除「'+records[i].name+'」這筆紀錄？'))return;if(commitRecords(records.filter((r,j)=>j!==i),'已刪除紀錄。')){resetEdit();clearReview();}}
 function localDate(){const d=new Date();return d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');}
 $('save').onclick=()=>{
@@ -161,7 +163,7 @@ $('save').onclick=()=>{
  if(n===null||(!unchanged&&!rates)){$('notice').textContent='請確認金額與匯率已載入。';return;}
  const twd=unchanged?old.twd:Math.round(n*rates.TWD/rates[f]*100)/100;
  if(!Number.isFinite(twd)||twd>1e12||n>1e12){$('notice').textContent='金額過大，請確認輸入。';return;}
- const row={...old,name,amount:n,currency:f,twd,date:old?old.date:localDate(),rateUpdatedAt:unchanged?old.rateUpdatedAt:rateDate,shop:$('shop').value.trim(),group:$('compare-group').value,thumbnail:old?.thumbnail||'',category:$('category').value,payment:$('payment').value,purchased:$('purchased').checked};
+ const row={...old,name,amount:n,currency:f,twd,date:old?old.date:localDate(),rateUpdatedAt:unchanged?old.rateUpdatedAt:rateDate,shop:$('shop').value.trim(),group:$('compare-group').value,thumbnail:pendingThumbnail||old?.thumbnail||'',category:$('category').value,payment:$('payment').value,purchased:$('purchased').checked};
  const next=old?records.map((r,i)=>i===editing?row:r):[row,...records];
  if(commitRecords(next,'已儲存「'+name+'」。'))resetEdit();
 };
@@ -171,19 +173,19 @@ $('amount').oninput=convert;$('swap').onclick=()=>{const f=$('from').value;$('fr
 function csvCell(v){let s=String(v??'');if(/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';}
 $('export').onclick=()=>{
  const bought=records.filter(r=>r.purchased);
- const values=[['日期','商品中文名稱','店家或備註','原幣金額','幣別','約台幣','付款方式','已購買','匯率資料時間','消費分類','比較組別'],...records.map(r=>[r.date,r.name,r.shop,r.amount,r.currency,r.twd.toFixed(2),({cash:'現金',card:'刷卡'})[r.payment]||'未選',r.purchased?'是':'否',r.rateUpdatedAt||'未記錄',categories[r.category]||'其他',r.group||'A']),['已購買合計','','','','TWD',bought.reduce((s,r)=>s+r.twd,0).toFixed(2),'','','','','']];
+ const values=[['日期','商品中文名稱','店家或備註','原幣金額','幣別','約台幣','付款方式','已購買','匯率資料時間','消費分類','比較組別'],...records.map(r=>[r.date,r.name,r.shop,r.amount,r.currency,r.twd.toFixed(2),({cash:'現金',card:'刷卡'})[r.payment]||'未選',r.purchased?'是':'否',r.rateUpdatedAt||'未記錄',categories[r.category]||'其他',r.group||'']),['已購買合計','','','','TWD',bought.reduce((s,r)=>s+r.twd,0).toFixed(2),'','','','','']];
  const blob=new Blob(['\uFEFF'+values.map(r=>r.map(csvCell).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Bella_Shopping_'+localDate().replaceAll('/','-')+'.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
 };
 async function loadRates(){ $('retry').hidden=true;$('save').disabled=true;$('result').textContent='載入匯率中…';const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);try{let data=null;try{const cache=JSON.parse(localStorage.getItem(storagePrefix+'rate-cache')||'null');if(cache&&Date.now()-cache.saved<3600000&&Date.now()/1000<cache.data.time_next_update_unix)data=cache.data;}catch{}if(!data){const res=await fetch('https://open.er-api.com/v6/latest/USD',{signal:controller.signal});if(!res.ok)throw Error();data=await res.json();}if(data.result!=='success'||!Object.keys(currencies).every(c=>Number.isFinite(data.rates?.[c])&&data.rates[c]>0)||!Number.isFinite(data.time_last_update_unix))throw Error();rates=data.rates;rateDate=new Date(data.time_last_update_unix*1000).toLocaleString('zh-TW',{timeZone:'Asia/Taipei'});$('updated').textContent='匯率更新：'+rateDate+'（台灣時間）';try{localStorage.setItem(storagePrefix+'rate-cache',JSON.stringify({saved:Date.now(),data}));}catch{}$('save').disabled=readError;$('confirm-photo').disabled=readError;convert();}catch{rates=null;$('save').disabled=readError;$('result').textContent='無法取得匯率，請確認網路後重試';$('retry').hidden=false;}finally{clearTimeout(timer);}}
 // Optional recognition backend. API keys never belong in this public file.
-let photoThumbnail='',photoData='',photoTarget=null,drafts=[],photoBusy=false,photoController=null;
+let photoThumbnail='',photoData='',photoTarget=null,drafts=[],photoBusy=false,photoController=null,photoSelection=0;
 try{$('endpoint').value=localStorage.getItem(storagePrefix+'recognition-url')||'';$('access').value=sessionStorage.getItem(storagePrefix+'recognition-code')||'';}catch{}
-function serviceURL(){const u=new URL($('endpoint').value.trim());if(u.protocol!=='https:'||u.username||u.password||u.search||u.hash)throw Error('請填寫正確的 HTTPS 服務網址。');return u.href;}
+function serviceURL(){const value=$('endpoint').value.trim();if(!value)throw Error('尚未設定圖片辨識服務。可以先按「確定」附上圖片，手動填寫商品資料。');let u;try{u=new URL(value);}catch{throw Error('請填寫正確的 HTTPS 辨識服務網址。');}if(u.protocol!=='https:'||u.username||u.password||u.search||u.hash)throw Error('請填寫正確的 HTTPS 辨識服務網址。');return u.href;}
 function serviceStatus(){$('photo-status').textContent=$('endpoint').value.trim()?'已填服務網址；選擇照片後，可開始辨識。':'尚未設定辨識服務；手動記帳可以正常使用。';}
 serviceStatus();
 $('settings-save').onclick=()=>{try{serviceURL();if(!$('access').value.trim())throw Error('請填寫辨識使用碼。');localStorage.setItem(storagePrefix+'recognition-url',$('endpoint').value.trim());sessionStorage.setItem(storagePrefix+'recognition-code',$('access').value.trim());$('settings-status').textContent='已儲存。使用碼只記住這次瀏覽工作階段。';serviceStatus();}catch(e){$('settings-status').textContent=e.message;}};
 function clearReview(){drafts=[];$('drafts').replaceChildren();$('review').hidden=true;}
-function discardPhoto(){photoController?.abort();photoController=null;photoBusy=false;$('recognize').disabled=false;$('confirm-photo').disabled=false;photoData='';photoThumbnail='';photoTarget=null;$('preview').removeAttribute('src');$('preview').hidden=true;$('photo-consent').hidden=true;clearReview();$('camera').value='';$('upload').value='';}
+function discardPhoto(){photoSelection++;photoController?.abort();photoController=null;photoBusy=false;$('attach-photo').disabled=false;$('recognize').disabled=false;$('confirm-photo').disabled=false;photoData='';photoThumbnail='';photoTarget=null;$('preview').removeAttribute('src');$('preview').hidden=true;$('photo-consent').hidden=true;clearReview();$('camera').value='';$('upload').value='';}
 function choosePhoto(target=null){
  if(!$('photo-dialog').open)$('photo-dialog').showModal();
  if(photoBusy){$('photo-status').textContent='正在辨識，請稍候或取消。';return;}
@@ -204,13 +206,14 @@ async function imageData(file){
 async function makeThumbnail(data){
  const img=await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=data;});const scale=Math.min(1,144/Math.max(img.naturalWidth,img.naturalHeight)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);return safeThumbnail(canvas.toDataURL('image/jpeg',.65));
 }
-async function selectPhoto(event){const file=event.target.files[0];if(!file)return;try{photoData=await imageData(file);photoThumbnail=await makeThumbnail(photoData);$('preview').src=photoData;$('preview').hidden=false;$('photo-consent').hidden=false;$('photo-status').textContent=photoTarget?'此照片將用於替換「'+photoTarget.name+'」，核對後才會變更。':'照片已選好，尚未上傳。';$('photo-box').scrollIntoView({behavior:'smooth'});}catch(e){$('photo-status').textContent=e.message;}}
+async function selectPhoto(event){const file=event.target.files[0];if(!file)return;const target=photoTarget;discardPhoto();photoTarget=target;const selection=photoSelection;try{const data=await imageData(file),thumbnail=await makeThumbnail(data);if(selection!==photoSelection)return;photoData=data;photoThumbnail=thumbnail;$('preview').src=data;$('preview').hidden=false;$('photo-consent').hidden=false;$('settings').open=false;$('photo-status').textContent='照片已選好，尚未上傳。請選擇下方操作。';$('photo-consent').scrollIntoView({behavior:'smooth',block:'nearest'});}catch(e){if(selection===photoSelection)$('photo-status').textContent=e.message;}}
+$('attach-photo').onclick=()=>{if(photoBusy||!photoData)return;if(photoTarget){const i=records.indexOf(photoTarget);if(i<0){$('photo-status').textContent='原商品已變更，請取消後重新選圖。';return;}if(!commitRecords(records.map((r,j)=>j===i?{...r,thumbnail:photoThumbnail}:r),'已更新商品圖片。'))return;}else{pendingThumbnail=photoThumbnail;$('notice').textContent='圖片已附上，請填寫商品資料後按「＋ 加入清單」。';}discardPhoto();$('photo-dialog').close();};
 $('camera').onchange=selectPhoto;$('upload').onchange=selectPhoto;
-$('discard-photo').onclick=()=>{discardPhoto();serviceStatus();};$('cancel-photo').onclick=()=>{discardPhoto();$('photo-status').textContent='已取消，沒有更動清單。';};
+$('discard-photo').onclick=()=>{discardPhoto();serviceStatus();$('photo-dialog').close();};$('cancel-photo').onclick=()=>{discardPhoto();$('photo-status').textContent='已取消，沒有更動清單。';};
 $('recognize').onclick=async()=>{
  if(photoBusy||!photoData)return;
  let endpoint;try{endpoint=serviceURL();if(!$('access').value.trim())throw Error('請先填寫辨識使用碼。');}catch(e){$('settings').open=true;$('photo-status').textContent=e.message;return;}
- photoBusy=true;$('recognize').disabled=true;clearReview();$('photo-status').textContent='正在辨識並翻成中文，請稍候…';
+ photoBusy=true;$('attach-photo').disabled=true;$('recognize').disabled=true;clearReview();$('photo-status').textContent='正在辨識並翻成中文，請稍候…';
  const controller=new AbortController();photoController=controller;const timer=setTimeout(()=>controller.abort(),60000);
  try{
   const res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+$('access').value.trim()},body:JSON.stringify({image:photoData}),signal:controller.signal});
@@ -221,7 +224,7 @@ $('recognize').onclick=async()=>{
   if(!drafts.length)throw Error('沒有辨識到商品，請拍清楚價牌或收據，或手動填入。');
   renderDrafts();$('review').hidden=false;$('photo-status').textContent=(typeof body.warning==='string'?body.warning.slice(0,500)+' ':'')+'請核對以下 '+drafts.length+' 個品項，尤其是價格與幣別。';
  }catch(e){if(photoController===controller)$('photo-status').textContent=e.name==='AbortError'?'辨識逾時，請稍後重試。':e.message;}
- finally{clearTimeout(timer);if(photoController===controller){photoBusy=false;photoController=null;$('recognize').disabled=false;}}
+ finally{clearTimeout(timer);if(photoController===controller){photoBusy=false;photoController=null;$('attach-photo').disabled=false;$('recognize').disabled=false;}}
 };
 function renderDrafts(){
  $('drafts').replaceChildren();
@@ -244,7 +247,7 @@ $('confirm-photo').onclick=()=>{
  const targetIndex=photoTarget?records.indexOf(photoTarget):-1;
  if(photoTarget&&targetIndex<0){$('photo-status').textContent='原商品已被修改或刪除，請取消後重新拍照。';return;}
  const added=[];
- for(const d of chosen){const n=d.amount.trim()===''?NaN:Number(d.amount);if(!d.name||!Number.isFinite(n)||n<0||n>1e12||!Object.hasOwn(currencies,d.currency)){$('photo-status').textContent='請補齊所有已勾選品項的名稱、有效價格與幣別。';return;}const same=photoTarget&&photoTarget.amount===n&&photoTarget.currency===d.currency,twd=same?photoTarget.twd:Math.round(n*rates.TWD/rates[d.currency]*100)/100;if(!Number.isFinite(twd)||twd>1e12){$('photo-status').textContent='金額過大，請核對。';return;}added.push({...photoTarget,name:d.name,amount:n,currency:d.currency,shop:d.shop,group:photoTarget?.group||$('compare-group').value,thumbnail:photoThumbnail||photoTarget?.thumbnail||'',category:Object.hasOwn(categories,d.category)?d.category:(photoTarget?.category||'other'),twd,date:photoTarget?.date||localDate(),payment:photoTarget?photoTarget.payment:$('payment').value,purchased:photoTarget?.purchased??false,rateUpdatedAt:same?photoTarget.rateUpdatedAt:rateDate});}
+ for(const d of chosen){const n=d.amount.trim()===''?NaN:Number(d.amount);if(!d.name||!Number.isFinite(n)||n<0||n>1e12||!Object.hasOwn(currencies,d.currency)){$('photo-status').textContent='請補齊所有已勾選品項的名稱、有效價格與幣別。';return;}const same=photoTarget&&photoTarget.amount===n&&photoTarget.currency===d.currency,twd=same?photoTarget.twd:Math.round(n*rates.TWD/rates[d.currency]*100)/100;if(!Number.isFinite(twd)||twd>1e12){$('photo-status').textContent='金額過大，請核對。';return;}added.push({...photoTarget,name:d.name,amount:n,currency:d.currency,shop:d.shop,group:photoTarget?photoTarget.group:$('compare-group').value,thumbnail:photoThumbnail||photoTarget?.thumbnail||'',category:Object.hasOwn(categories,d.category)?d.category:(photoTarget?.category||'other'),twd,date:photoTarget?.date||localDate(),payment:photoTarget?photoTarget.payment:$('payment').value,purchased:photoTarget?.purchased??false,rateUpdatedAt:same?photoTarget.rateUpdatedAt:rateDate});}
  const next=photoTarget?records.map((r,i)=>i===targetIndex?added[0]:r):[...added,...records];
  if(commitRecords(next,'已保存 '+added.length+' 個品項。')){discardPhoto();resetEdit();$('photo-dialog').close();$('photo-status').textContent='已加入清單。付款方式與已購買勾選可在每一行調整。';$('summary').scrollIntoView({behavior:'smooth'});}
 };
