@@ -18,7 +18,7 @@
 <label for="name">消費項目</label><input id="name" maxlength="80" placeholder="例如：午餐、衣服、伴手禮">
 <div class="pair"><div><label for="payment">付款方式</label><select id="payment"><option value="card">刷卡</option><option value="cash">現金</option><option value="">未選</option></select></div><div><label for="compare-group">加入比較</label><select id="compare-group"><option value="">未選</option><option>A</option><option>B</option><option>C</option><option>D</option></select></div></div>
 <div class="quick-actions"><label class="check"><input id="purchased" type="checkbox">已確認購買</label><button id="open-photo" class="secondary" type="button">📷 拍照</button><button id="open-analysis" class="secondary" type="button">◔ 分析</button></div>
-<label for="category">消費分類</label><select id="category"></select>
+<label for="category">消費分類</label><select id="category" aria-describedby="category-hint"></select><p id="category-hint" class="hint" role="status" aria-live="polite">自動分類：其他。加入清單時會依品項判斷，也可以手動選擇。</p><button id="category-auto" type="button" class="secondary" hidden>恢復自動分類</button>
 <details id="extra-fields"><summary>店家／備註（選填）</summary><label for="shop">店家／備註</label><input id="shop" maxlength="80" placeholder="例如：A店、會員價、兩件優惠"><button id="edit-photo" class="secondary photo-actions" type="button" hidden>替這筆商品拍照填入</button></details>
 <button id="save" disabled>＋ 加入清單</button><button id="cancel" class="secondary" hidden>取消修改</button><p id="notice" role="status" aria-live="polite"></p>
 </section>
@@ -26,7 +26,7 @@
 <div class="table-wrap" tabindex="0" role="region" aria-label="購物記帳表，可左右滑動"><table>
 <thead><tr><th>已購</th><th id="date-heading" aria-sort="descending"><button id="sort-date" class="sort-button">日期 <span>↓</span></button></th><th>縮圖</th><th>消費項目</th><th id="group-heading" aria-sort="none"><button id="sort-group" class="sort-button">比較 <span>↕</span></button></th><th>幣別／原價</th><th>約台幣</th><th>付款方式</th><th>操作</th></tr></thead><tbody id="rows"></tbody></table></div>
 <div class="ledger-footer"><strong id="ledger-total">合計 NT$ 0.00</strong><button id="export" class="secondary">↓ 匯出清單</button></div></section>
-<footer><p>合計只計已購買商品，台幣金額保留記錄時的換算值。</p><p>紀錄保存在此瀏覽器，請定期匯出備份。</p><p>實際換匯及刷卡金額依銀行報價。<a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">匯率來源</a></p><small class="version">版本 4.1 · 手機精簡清單</small></footer>
+<footer><p>合計只計已購買商品，台幣金額保留記錄時的換算值。</p><p>紀錄保存在此瀏覽器，請定期匯出備份。</p><p>實際換匯及刷卡金額依銀行報價。<a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">匯率來源</a></p><small class="version">版本 4.2 · 自動／手動分類</small></footer>
 </main>
 <dialog id="photo-dialog" aria-labelledby="photo-title"><div class="dialog-header"><h2 id="photo-title">📷 商品圖片</h2><button id="close-photo" type="button" aria-label="關閉拍照視窗">×</button></div><section id="photo-box">
 <p class="hint">選好圖片後，可直接附上圖片，或使用辨識自動填入。</p>
@@ -59,16 +59,32 @@ const categoryColors={food:'#548568',clothing:'#d4a15c',stay:'#7f94c0',transport
 const categoryOptions=Object.entries(categories);
 for(const [code,label] of categoryOptions)$('category').add(new Option(label,code));
 $('category').value='other';
+// Local keyword suggestions: ambiguous or unknown items remain in Other.
 function suggestCategory(name){
- if(/飯店|酒店|旅館|住宿|民宿|hotel|hostel/i.test(name))return 'stay';
- if(/地鐵|捷運|車票|機票|計程車|公車|巴士|交通|租車|加油|停車|taxi|metro|train/i.test(name))return 'transport';
- if(/衣|褲|裙|鞋|帽|襪|外套|服飾|配件|shirt|shoes/i.test(name))return 'clothing';
- if(/餐|飯|麵|飲|茶|咖啡|零食|餅|蛋糕|烤肉|水果|便當|food|coffee/i.test(name))return 'food';
- return 'other';
+ const text=String(name||'').normalize('NFKC').toLowerCase();
+ if(/模型|玩具|明信片|杯子|馬克杯|\b(model|toy|postcard|mug)\b/i.test(text))return 'other';
+ const rules={
+  food:/早餐|午餐|晚餐|早午餐|宵夜|餐點|餐廳|套餐|便當|飯|麵|粥|湯|火鍋|烤肉|燒肉|炸雞|炸物|壽司|生魚片|海鮮|牛排|披薩|漢堡|三明治|甜點|蛋糕|餅乾|麵包|零食|巧克力|冰淇淋|水果|飲料|咖啡|奶茶|果汁|啤酒|礦泉水|茶葉|\b(food|coffee|cafe|café|breakfast|lunch|dinner|restaurant|snack|cake|bread|tea|juice|beer|pizza|burger)\b/i,
+  clothing:/衣|褲|裙|鞋|帽|襪|外套|服飾|圍巾|手套|皮帶|包包|背包|手提包|\b(shirt|shirts|t-shirt|shoes|socks|coat|jacket|dress|skirt|pants|jeans|scarf|clothing|bag|handbag|backpack)\b/i,
+  stay:/飯店|酒店|旅館|住宿|民宿|旅舍|青旅|房費|\b(hotel|hostel|motel|airbnb|lodging|accommodation)\b/i,
+  transport:/地鐵|捷運|車票|機票|計程車|出租車|公車|巴士|交通|租車|加油|停車|高鐵|火車|渡輪|船票|接駁|輕軌|\b(taxi|metro|train|bus|uber|flight|airfare|ferry|parking|transport)\b/i
+ };
+ // Remove hotel words from food matching so a room charge is not a meal.
+ const hits=Object.entries(rules).filter(([code,re])=>re.test(code==='food'?text.replace(/飯店|酒店/g,''):text)).map(([code])=>code);
+ return hits.length===1?hits[0]:'other';
 }
 let categoryChosen=false;
-$('category').onchange=()=>categoryChosen=true;
-$('name').oninput=()=>{if(!categoryChosen)$('category').value=suggestCategory($('name').value);};
+function updateCategoryHint(){
+ const code=Object.hasOwn(categories,$('category').value)?$('category').value:'other';
+ $('category-hint').textContent=categoryChosen?'手動分類：'+categories[code]+'。儲存時會保留妳的選擇。':'自動分類：'+categories[code]+'。加入清單時會依品項判斷；無法判斷則歸其他。';
+ $('category-auto').hidden=!categoryChosen;
+}
+function refreshCategory(){if(!categoryChosen)$('category').value=suggestCategory($('name').value);updateCategoryHint();}
+function resolvedCategory(name){return categoryChosen&&Object.hasOwn(categories,$('category').value)?$('category').value:suggestCategory(name);}
+$('category').onchange=()=>{categoryChosen=true;updateCategoryHint();};
+$('category-auto').onclick=()=>{categoryChosen=false;refreshCategory();};
+$('name').oninput=refreshCategory;
+updateCategoryHint();
 let records=[],rates=null,rateDate='',editing=-1,storageError=false,readError=false;
 let sortState={field:'date',direction:-1};
 const groups=['','A','B','C','D'];
@@ -86,7 +102,7 @@ try{const prefs=JSON.parse(localStorage.getItem(storagePrefix+'currencies')||'{}
 function amountValue(){const s=$('amount').value.trim(),n=Number(s);return s!==''&&Number.isFinite(n)&&n>=0?n:null;}
 function convert(){const n=amountValue();$('rate').textContent='';if(!rates)return;if(n===null){$('result').textContent='請輸入有效金額';return;}const f=$('from').value,t=$('to').value,x=n*rates[t]/rates[f];$('result').textContent=Number.isFinite(x)?currency(x,t):'金額過大';$('rate').textContent='1 '+f+' ≈ '+(rates[t]/rates[f]).toLocaleString('zh-TW',{maximumSignificantDigits:6})+' '+t;}
 function persist(){try{localStorage.setItem(key,JSON.stringify(records));storageError=false;}catch{storageError=true;}return !storageError;}
-function resetEdit(){pendingThumbnail='';editing=-1;$('category').value='other';categoryChosen=false;$('name').value='';$('shop').value='';$('payment').value='card';$('compare-group').value='';$('purchased').checked=false;$('save').textContent='＋ 加入清單';$('cancel').hidden=true;$('edit-photo').hidden=true;$('extra-fields').open=false;$('name').classList.remove('editing');}
+function resetEdit(){pendingThumbnail='';editing=-1;$('category').value='other';categoryChosen=false;$('name').value='';$('shop').value='';$('payment').value='card';$('compare-group').value='';$('purchased').checked=false;$('save').textContent='＋ 加入清單';$('cancel').hidden=true;$('edit-photo').hidden=true;$('extra-fields').open=false;$('name').classList.remove('editing');updateCategoryHint();}
 function commitRecords(next,message){
  if(readError)return false;
  try{localStorage.setItem(key,JSON.stringify(next));}catch{$('notice').textContent='儲存失敗，這次變更尚未保存。請匯出現有紀錄，並檢查儲存空間。';return false;}
@@ -155,7 +171,7 @@ function renderStatistics(){
  if(!total&&records.some(r=>r.purchased))$('chart-empty').textContent='已購買金額為 0，尚無可顯示的消費占比。';
  else if(!total)$('chart-empty').textContent='還沒有已購買的消費，勾選商品後就會顯示占比。';
 }
-function edit(i){if(readError)return;pendingThumbnail='';const r=records[i];editing=i;$('amount').value=r.amount;$('from').value=r.currency;$('to').value='TWD';$('name').value=r.name;$('shop').value=r.shop;$('compare-group').value=r.group||'';$('edit-photo').hidden=false;$('category').value=r.category;categoryChosen=true;$('payment').value=r.payment;$('purchased').checked=r.purchased;$('name').classList.add('editing');$('save').textContent='儲存修改';$('cancel').hidden=false;$('notice').textContent='修改這筆商品；其他商品不會更動。';convert();window.scrollTo({top:0,behavior:'smooth'});}
+function edit(i){if(readError)return;pendingThumbnail='';const r=records[i];editing=i;$('amount').value=r.amount;$('from').value=r.currency;$('to').value='TWD';$('name').value=r.name;$('shop').value=r.shop;$('compare-group').value=r.group||'';$('edit-photo').hidden=false;$('category').value=r.category;categoryChosen=true;updateCategoryHint();$('payment').value=r.payment;$('purchased').checked=r.purchased;$('name').classList.add('editing');$('save').textContent='儲存修改';$('cancel').hidden=false;$('notice').textContent='修改這筆商品；其他商品不會更動。';convert();window.scrollTo({top:0,behavior:'smooth'});}
 function remove(i){if(readError||!confirm('刪除「'+records[i].name+'」這筆紀錄？'))return;if(commitRecords(records.filter((r,j)=>j!==i),'已刪除紀錄。')){resetEdit();clearReview();}}
 function localDate(){const d=new Date();return d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');}
 $('save').onclick=()=>{
@@ -165,9 +181,9 @@ $('save').onclick=()=>{
  if(n===null||(!unchanged&&!rates)){$('notice').textContent='請確認金額與匯率已載入。';return;}
  const twd=unchanged?old.twd:Math.round(n*rates.TWD/rates[f]*100)/100;
  if(!Number.isFinite(twd)||twd>1e12||n>1e12){$('notice').textContent='金額過大，請確認輸入。';return;}
- const row={...old,name,amount:n,currency:f,twd,date:old?old.date:localDate(),rateUpdatedAt:unchanged?old.rateUpdatedAt:rateDate,shop:$('shop').value.trim(),group:$('compare-group').value,thumbnail:pendingThumbnail||old?.thumbnail||'',category:$('category').value,payment:$('payment').value,purchased:$('purchased').checked};
+ const row={...old,name,amount:n,currency:f,twd,date:old?old.date:localDate(),rateUpdatedAt:unchanged?old.rateUpdatedAt:rateDate,shop:$('shop').value.trim(),group:$('compare-group').value,thumbnail:pendingThumbnail||old?.thumbnail||'',category:resolvedCategory(name),payment:$('payment').value,purchased:$('purchased').checked};
  const next=old?records.map((r,i)=>i===editing?row:r):[row,...records];
- if(commitRecords(next,'已儲存「'+name+'」。'))resetEdit();
+ if(commitRecords(next,'已儲存「'+name+'」，分類：'+categories[row.category]+'。'))resetEdit();
 };
 $('cancel').onclick=()=>{resetEdit();$('notice').textContent='已取消修改。';};
 for(const id of ['from','to'])$(id).onchange=()=>{convert();try{localStorage.setItem(storagePrefix+'currencies',JSON.stringify({from:$('from').value,to:$('to').value}));}catch{}};
